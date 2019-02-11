@@ -7,9 +7,9 @@
 #include <stdio.h>
 
 int main() {
-
-    int list_s = -1; // Default to error val
-    if ((list_s = socket(PF_INET, SOCK_STREAM, 0)) <= 0){
+    struct sockaddr_in sockaddr;
+    int sock_desc = -1; // Default to error val
+    if ((sock_desc = socket(PF_INET, SOCK_STREAM, 0)) <= 0){
         printf("SERVER: Error creating socket\n");
         exit(EXIT_FAILURE);
     }
