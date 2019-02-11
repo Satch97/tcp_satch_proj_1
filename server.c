@@ -24,5 +24,10 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
+    if(listen(sock_desc, 3) < 0){
+        printf("Error: listen error\n");
+        exit(EXIT_FAILURE);
+    }
+
     return 0;
 }
