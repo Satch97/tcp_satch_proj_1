@@ -13,6 +13,11 @@ int main() {
         printf("SERVER: Error creating socket\n");
         exit(EXIT_FAILURE);
     }
+    
+    memset(&sockaddr, 0, sizeof(sockaddr));
+    sockaddr.sin_family = AF_INET;
+    sockaddr.sin_port = htons(2002);
+    sockaddr.sin_addr.s_addr = htonl(INADDR_ANY);
 
     return 0;
 }
