@@ -10,7 +10,7 @@
 #define Q_SIZE      (10)
 
 int main() {
-    struct sockaddr_in sockaddr;
+    struct sockaddr_in sockaddr, clientaddr;
     int sock_desc = -1; // Default to error val
     if ((sock_desc = socket(PF_INET, SOCK_STREAM, 0)) <= 0) {
         printf("SERVER: Error creating socket\n");
@@ -32,9 +32,8 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    int conn_s;
+    int conn_s, clientaddrlength;
     while(1) {
-        }
     }
 
     return 0;
