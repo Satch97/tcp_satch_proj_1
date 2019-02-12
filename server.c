@@ -32,5 +32,10 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
+    int conn_s;
+    while(1) {
+        }
+    }
+
     return 0;
 }
