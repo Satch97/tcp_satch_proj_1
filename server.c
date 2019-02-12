@@ -34,6 +34,10 @@ int main() {
 
     int conn_s, clientaddrlength;
     while(1) {
+        if((conn_s = accept(conn_s, (struct sockaddr *) &clientaddr, (socklen_t *) &clientaddrlength)) < 0) {
+            printf("Error: accept\n");
+        }
+        printf("Connection made to clientaddr %d", clientaddr.sin_addr.s_addr);
     }
 
     return 0;
