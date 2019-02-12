@@ -10,6 +10,10 @@
 #define PORT        (2002)
 #define Q_SIZE      (10)
 
+ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
+    
+}
+
 int main() {
     struct sockaddr_in sockaddr, clientaddr;
     int sock_desc = -1; // Default to error val
