@@ -5,6 +5,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #define PORT        (2002)
 #define Q_SIZE      (10)
@@ -33,11 +34,15 @@ int main() {
     }
 
     int conn_s, clientaddrlength;
+    char buffer[65535];
     while(1) {
         if((conn_s = accept(conn_s, (struct sockaddr *) &clientaddr, (socklen_t *) &clientaddrlength)) < 0) {
             printf("Error: accept\n");
         }
         printf("Connection made to clientaddr %d", clientaddr.sin_addr.s_addr);
+
+        Readline(conn_s, buffer, 65535);
+        printf("received %s", buffer);
     }
 
     return 0;
