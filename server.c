@@ -11,9 +11,9 @@
 #define Q_SIZE      (10)
 
 ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
-    int rec;
+    int rec, num;
     char c, *lbuff = buffer;
-    for(int num = 1; num < maxlen; num++) {
+    for(num = 1; num < maxlen; num++) {
         if((rec = read(sock_desc, &c, 1)) == 1) {
             if(c == '\r') continue;
             *lbuff++ = c;
