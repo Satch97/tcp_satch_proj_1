@@ -14,7 +14,9 @@ ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
     int rec;
     char c;
     for(int num = 1; num < maxlen; num++) {
-        if((rec = read(sock_desc, &c, 1)) == 1) {}
+        if((rec = read(sock_desc, &c, 1)) == 1) {
+            printf(" received : %c\n", c );
+        }
     }
 }
 
@@ -44,10 +46,11 @@ int main() {
     int conn_s, clientaddrlength;
     char buffer[65535];
     while(1) {
-        if((conn_s = accept(conn_s, (struct sockaddr *) &clientaddr, (socklen_t *) &clientaddrlength)) < 0) {
+        if((conn_s = accept(sock_desc, (struct sockaddr *) &clientaddr, (socklen_t *) &clientaddrlength)) < 0) {
             printf("Error: accept\n");
+            exit(EXIT_FAILURE);
         }
-        printf("Connection made to clientaddr %d", clientaddr.sin_addr.s_addr);
+        printf("Connection made to clientaddr %d\n", clientaddr.sin_addr.s_addr);
 
         Readline(conn_s, buffer, 65535);
         printf("received %s", buffer);
