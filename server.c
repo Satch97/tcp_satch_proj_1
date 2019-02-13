@@ -64,7 +64,9 @@ int main() {
         printf("Connection made to clientaddr %d\n", clientaddr.sin_addr.s_addr);
 
         Readline(conn_s, buffer, 65535);
-        printf("received %s", buffer);
+        
+        char* success = "success\n";
+        if(strcmp(buffer, success) == 0) printf("YESS\n");
     }
 
     return 0;
