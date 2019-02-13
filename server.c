@@ -31,6 +31,8 @@ ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
     return num; // number of bytes received inclusive of NULL
 }
 
+int MakeUpper(char *str) {}
+
 int main() {
     struct sockaddr_in sockaddr, clientaddr;
     int sock_desc = -1; // Default to error val
@@ -70,6 +72,7 @@ int main() {
 
         memset(&buffer, 0, sizeof(buffer));
         Readline(conn_s, buffer, 65535);
+        MakeUpper(buffer);
     }
 
     return 0;
