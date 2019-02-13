@@ -27,7 +27,7 @@ ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
             return -1;
         }
     }
-    *lbuff = 0;
+    *lbuff = '\0';
     return num; // number of bytes received inclusive of NULL
 }
 
