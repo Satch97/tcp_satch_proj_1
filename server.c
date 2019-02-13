@@ -23,8 +23,12 @@ ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
             if (num == 1) return 0; // connection closed
             else break;
         }
-        else {}
+        else {
+            return -1;
+        }
     }
+    *buffer = 0;
+    return num; // number of bytes received inclusive of NULL
 }
 
 int main() {
