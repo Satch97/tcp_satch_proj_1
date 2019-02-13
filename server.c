@@ -67,6 +67,9 @@ int main() {
         
         char* success = "success\n";
         if(strcmp(buffer, success) == 0) printf("YESS\n");
+
+        memset(&buffer, 0, sizeof(buffer));
+        Readline(conn_s, buffer, 65535);
     }
 
     return 0;
