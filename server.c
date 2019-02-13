@@ -19,7 +19,11 @@ ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
             buffer++;
             if(c == '\n') break;
         }
-        else if (rec == 0) {}
+        else if (rec == 0) {
+            if (num == 1) return 0; // connection closed
+            else break;
+        }
+        else {}
     }
 }
 
