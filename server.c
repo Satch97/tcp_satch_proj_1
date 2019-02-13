@@ -12,11 +12,11 @@
 
 ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
     int rec;
-    char c;
+    char c, *lbuff = buffer;
     for(int num = 1; num < maxlen; num++) {
         if((rec = read(sock_desc, &c, 1)) == 1) {
-            *buffer = c;
-            buffer++;
+            if(c == '\r') continue;
+            *lbuff++ = c;
             if(c == '\n') break;
         }
         else if (rec == 0) {
@@ -27,7 +27,7 @@ ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
             return -1;
         }
     }
-    *buffer = 0;
+    *lbuff = 0;
     return num; // number of bytes received inclusive of NULL
 }
 
