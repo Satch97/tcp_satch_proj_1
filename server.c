@@ -15,8 +15,11 @@ ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
     char c;
     for(int num = 1; num < maxlen; num++) {
         if((rec = read(sock_desc, &c, 1)) == 1) {
-            printf(" received : %c\n", c );
+            *buffer = c;
+            buffer++;
+            if(c == '\n') break;
         }
+        else if (rec == 0) {}
     }
 }
 
