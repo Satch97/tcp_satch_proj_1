@@ -31,8 +31,6 @@ ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
     return num; // number of bytes received inclusive of NULL
 }
 
-int MakeUpper(char *str) {}
-
 int main() {
     struct sockaddr_in sockaddr, clientaddr;
     int sock_desc = -1; // Default to error val
@@ -66,13 +64,14 @@ int main() {
         printf("Connection made to clientaddr %d\n", clientaddr.sin_addr.s_addr);
 
         Readline(conn_s, buffer, 65535);
-        
+
         char* success = "success\n";
         if(strcmp(buffer, success) == 0) printf("YESS\n");
 
         memset(&buffer, 0, sizeof(buffer));
         Readline(conn_s, buffer, 65535);
-        MakeUpper(buffer);
+        for(char* ch=buffer; *ch != '\0' ; ch++) *ch=toupper(*ch);
+        memset(&buffer, 0, sizeof(buffer));
     }
 
     return 0;
