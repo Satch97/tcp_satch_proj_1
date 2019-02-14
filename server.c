@@ -31,6 +31,11 @@ ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
     return num; // number of bytes received inclusive of NULL
 }
 
+ssize_t WriteLine(int sock_desc, const void *vptr, size_t len) {
+    int nrem = len;
+    while(nrem >0) {}
+}
+
 int main() {
     struct sockaddr_in sockaddr, clientaddr;
     int sock_desc = -1; // Default to error val
