@@ -16,7 +16,11 @@ int main() {
         printf("Error : Socket Creation");
     }
     struct sockaddr_in sockaddr;
+    memset(&sockaddr, 0, sizeof(sockaddr));
     sockaddr.sin_family = AF_INET;
     sockaddr.sin_port = htons(2002);
-    inet_aton (addr, &sockaddr.sin_addr);
+    if (inet_aton (addr, &sockaddr.sin_addr) <= 0)
+    {
+        printf("Error converting address to 32 bit int\n");
+    }
 }
