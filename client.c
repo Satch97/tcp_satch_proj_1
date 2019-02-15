@@ -11,7 +11,12 @@
 
 int main() {
     int sock_desc;
+    char *addr = "127.0.0.1";
     if((sock_desc = socket (AF_INET, SOCK_STREAM, 0)) < 0) {
         printf("Error : Socket Creation");
     }
+    struct sockaddr_in sockaddr;
+    sockaddr.sin_family = AF_INET;
+    sockaddr.sin_port = htons(2002);
+    inet_aton (addr, &sockaddr.sin_addr);
 }
