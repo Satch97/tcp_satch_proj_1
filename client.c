@@ -9,6 +9,40 @@
 #include <stdio.h>
 #include <string.h>
 
+ssize_t ReadLine(int sock_desc, void *buffer, size_t maxlen) {
+    int rec, num;
+    char c, *lbuff = buffer;
+    for(num = 1; num < maxlen; num++) {
+        if((rec = read(sock_desc, &c, 1)) == 1) {
+            if(c == '\r') continue;
+            *lbuff++ = c;
+            if(c == '\n') break;
+        }
+        else if (rec == 0) {
+            if (num == 1) return 0; // connection closed
+            else break;
+        }
+        else {
+            return -1;
+        }
+    }
+    *lbuff = '\0';
+    return num; // number of bytes received inclusive of NULL
+}
+
+ssize_t WriteLine(int sock_desc, const void *vptr, size_t len) {
+    int nwritten , nrem = len;
+    const char *buffer;
+    buffer =vptr;
+
+    while(nrem >0) {
+        if ((nwritten = write(sock_desc, buffer,nrem)) <= 0) return -1;
+        nrem = nrem - nwritten;
+        buffer = buffer + nwritten;
+    }
+    return len;
+}
+
 int main() {
     int sock_desc;
     char *addr = "127.0.0.1";
