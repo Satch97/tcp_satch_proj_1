@@ -12,6 +12,7 @@
 int main() {
     int sock_desc;
     char *addr = "127.0.0.1";
+    char buffer[65535];
     if((sock_desc = socket (AF_INET, SOCK_STREAM, 0)) < 0) {
         printf("Error : Socket Creation");
     }
@@ -39,7 +40,7 @@ int main() {
     WriteLine(sock_desc, buffer, strlen(buffer));
 
     memset(&buffer, 0, sizeof(buffer));
-    Readline(sock_desc, buffer, 54435);
+    ReadLine(sock_desc, buffer, 54435);
     printf("Capitalized string : %s", buffer);
 
     return 0;
