@@ -10,7 +10,7 @@
 #define PORT        (2002)
 #define Q_SIZE      (10)
 
-ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
+ssize_t ReadLine(int sock_desc, void *buffer, size_t maxlen) {
     int rec, num;
     char c, *lbuff = buffer;
     for(num = 1; num < maxlen; num++) {
@@ -33,7 +33,7 @@ ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
 
 ssize_t WriteLine(int sock_desc, const void *vptr, size_t len) {
     int nwritten , nrem = len;
-    char *buffer;
+    const char *buffer;
     buffer =vptr;
 
     while(nrem >0) {
@@ -76,13 +76,13 @@ int main() {
         }
         printf("Connection made to clientaddr %d\n", clientaddr.sin_addr.s_addr);
 
-        Readline(conn_s, buffer, 65535);
+        ReadLine(conn_s, buffer, 65535);
 
         char* success = "success\n";
         if(strcmp(buffer, success) == 0) printf("YESS\n");
 
         memset(&buffer, 0, sizeof(buffer));
-        Readline(conn_s, buffer, 65535);
+        ReadLine(conn_s, buffer, 65535);
         for(char* ch=buffer; *ch != '\0' ; ch++) *ch=toupper(*ch);
         WriteLine(conn_s, buffer, strlen(buffer));
         memset(&buffer, 0, sizeof(buffer));
