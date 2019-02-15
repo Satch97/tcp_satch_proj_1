@@ -47,7 +47,12 @@ int GetInstr() {
     char x= '\0';
     while(1) {
         printf("Enter \'s\' to send a string \nEnter 'f' to send file\nEnter q to exit\nEnter : ");
+        x = getchar();
+        if (x == 's') return 1;
+        if (x == 'f') return 2;
+        if (x == 'q') exit(0);
     }
+
 }
 
 int main() {
