@@ -32,11 +32,16 @@ ssize_t Readline(int sock_desc, void *buffer, size_t maxlen) {
 }
 
 ssize_t WriteLine(int sock_desc, const void *vptr, size_t len) {
-    int nwritten =0, nrem = len;
+    int nwritten , nrem = len;
     char *buffer;
+    buffer =vptr;
+
     while(nrem >0) {
         if ((nwritten = write(sock_desc, buffer,nrem)) <= 0) return -1;
+        nrem = nrem - nwritten;
+        buffer = buffer + nwritten;
     }
+    return len;
 }
 
 int main() {
