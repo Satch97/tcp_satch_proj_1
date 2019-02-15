@@ -34,5 +34,9 @@ int main() {
     strcpy(buffer, "CCC\n");
     WriteLine(sock_desc, buffer, strlen(buffer));
 
+    memset(&buffer, 0, sizeof(buffer));
+    strcpy(buffer, "string to capitalize");
+    WriteLine(sock_desc, buffer, strlen(buffer));
+
     return 0;
 }
