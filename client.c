@@ -8,3 +8,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
+int main() {
+    int sock_desc;
+    if((sock_desc = socket (AF_INET, SOCK_STREAM, 0)) < 0) {
+        printf("Error : Socket Creation");
+    }
+}
