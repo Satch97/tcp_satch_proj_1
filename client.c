@@ -36,12 +36,12 @@ int main() {
     WriteLine(sock_desc, buffer, strlen(buffer));
 
     memset(&buffer, 0, sizeof(buffer));
-    strcpy(buffer, "string to capitalize");
+    strcpy(buffer, "string to capitalize\n");
     WriteLine(sock_desc, buffer, strlen(buffer));
 
     memset(&buffer, 0, sizeof(buffer));
     ReadLine(sock_desc, buffer, 54435);
-    printf("Capitalized string : %s", buffer);
+    printf("Capitalized string : %s\n", buffer);
 
     return 0;
 }
