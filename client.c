@@ -43,6 +43,13 @@ ssize_t WriteLine(int sock_desc, const void *vptr, size_t len) {
     return len;
 }
 
+int GetInstr() {
+    char x= '\0';
+    while(1) {
+        printf("Enter \'s\' to send a string \nEnter 'f' to send file\nEnter q to exit\nEnter : ");
+    }
+}
+
 int main() {
     int sock_desc;
     char *addr = "127.0.0.1";
@@ -64,6 +71,8 @@ int main() {
     {
         printf("Connection failed\n");
     }
+
+    int action = GetInstr();
 
     memset(&buffer, 0, sizeof(buffer));
     strcpy(buffer, "CCC\n");
