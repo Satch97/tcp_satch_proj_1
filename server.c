@@ -84,6 +84,7 @@ int main() {
         memset(&buffer, 0, sizeof(buffer));
         Readline(conn_s, buffer, 65535);
         for(char* ch=buffer; *ch != '\0' ; ch++) *ch=toupper(*ch);
+        WriteLine(conn_s, buffer, strlen(buffer));
         memset(&buffer, 0, sizeof(buffer));
     }
 
