@@ -19,8 +19,14 @@ int main() {
     memset(&sockaddr, 0, sizeof(sockaddr));
     sockaddr.sin_family = AF_INET;
     sockaddr.sin_port = htons(2002);
+
     if (inet_aton (addr, &sockaddr.sin_addr) <= 0)
     {
         printf("Error converting address to 32 bit int\n");
+    }
+    
+    if (connect (sock_desc, (struct sockaddr *) &sockaddr, sizeof(sockaddr)) < 0 )
+    {
+        printf("Connection failed\n");
     }
 }
