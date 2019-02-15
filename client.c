@@ -24,9 +24,15 @@ int main() {
     {
         printf("Error converting address to 32 bit int\n");
     }
-    
+
     if (connect (sock_desc, (struct sockaddr *) &sockaddr, sizeof(sockaddr)) < 0 )
     {
         printf("Connection failed\n");
     }
+
+    memset(&buffer, 0, sizeof(buffer));
+    strcpy(buffer, "CCC\n");
+    WriteLine(sock_desc, buffer, strlen(buffer));
+
+    return 0;
 }
