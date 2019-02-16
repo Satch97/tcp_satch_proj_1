@@ -81,17 +81,17 @@ int main() {
         char* cap = "CAP\n";
         char* file = "FILE\n";
         if(strcmp(buffer, cap) == 0) {
-          memset(&buffer, 0, sizeof(buffer));
-          ReadLine(conn_s, buffer, 65535);
-          for(char* ch=buffer; *ch != '\0' ; ch++) *ch=toupper(*ch);
+            memset(&buffer, 0, sizeof(buffer));
+            ReadLine(conn_s, buffer, 65535);
+            for(char* ch=buffer; *ch != '\0' ; ch++) *ch=toupper(*ch);
 
-          int wordlen = strlen(buffer);
-          memset(&tempbuffer, 0, sizeof(tempbuffer));
-          sprintf(tempbuffer, "%d\n", wordlen );
-          WriteLine(conn_s, tempbuffer, strlen(tempbuffer));
+            int wordlen = strlen(buffer);
+            memset(&tempbuffer, 0, sizeof(tempbuffer));
+            sprintf(tempbuffer, "%d\n", wordlen );
+            WriteLine(conn_s, tempbuffer, strlen(tempbuffer));
 
-          WriteLine(conn_s, buffer, strlen(buffer));
-          memset(&buffer, 0, sizeof(buffer));
+            WriteLine(conn_s, buffer, strlen(buffer));
+            memset(&buffer, 0, sizeof(buffer));
         }
         else if (strcmp(buffer,file) == 0) {
             memset(&buffer, 0, sizeof(buffer));
