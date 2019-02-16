@@ -103,7 +103,11 @@ int main() {
             if(fp = fopen (buffer, "r")) {
 
             } else {
-                
+                memset(&tempbuffer, 0, sizeof(tempbuffer));
+                memset(&buffer, 0, sizeof(buffer));
+                strcpy(buffer, "NOT FOUND");
+                sprintf(tempbuffer, "%d\n", strlen(buffer) );
+                strcat(buffer, "\n");
             }
 
         }
