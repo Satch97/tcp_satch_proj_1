@@ -91,6 +91,11 @@ int main() {
 
     memset(&buffer, 0, sizeof(buffer));
     ReadLine(sock_desc, buffer, 54435);
+    int strlen = strtol(buffer, NULL, 10);
+    printf("Number of bytes to receive is %d\n", strlen);
+
+    memset(&buffer, 0, sizeof(buffer));
+    ReadLine(sock_desc, buffer, 54435);
     printf("Capitalized string : %s\n", buffer);
 
     return 0;
