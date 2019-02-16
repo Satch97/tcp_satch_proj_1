@@ -108,6 +108,8 @@ int main() {
                 strcpy(buffer, "NOT FOUND");
                 sprintf(tempbuffer, "%d\n", strlen(buffer) );
                 strcat(buffer, "\n");
+                WriteLine(conn_s, tempbuffer, strlen(tempbuffer));
+                WriteLine(conn_s, buffer, strlen(buffer));
             }
 
         }
