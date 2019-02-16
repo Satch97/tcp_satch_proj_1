@@ -79,6 +79,7 @@ int main() {
         ReadLine(conn_s, buffer, 65535);
 
         char* cap = "CAP\n";
+        char* file = "FILE\n"
         if(strcmp(buffer, cap) == 0) {
           memset(&buffer, 0, sizeof(buffer));
           ReadLine(conn_s, buffer, 65535);
@@ -92,7 +93,8 @@ int main() {
           WriteLine(conn_s, buffer, strlen(buffer));
           memset(&buffer, 0, sizeof(buffer));
         }
-
+        else if (strcmp(buffer,file) == 0) {
+        }
         close(conn_s);
     }
 
