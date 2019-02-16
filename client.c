@@ -84,7 +84,9 @@ int main() {
     WriteLine(sock_desc, buffer, strlen(buffer));
 
     memset(&buffer, 0, sizeof(buffer));
-    strcpy(buffer, "string to capitalize\n");
+    printf("Enter string : ");
+    scanf("%s", buffer);
+    strcat(buffer, "\n"); // add newline at end
     WriteLine(sock_desc, buffer, strlen(buffer));
 
     memset(&buffer, 0, sizeof(buffer));
