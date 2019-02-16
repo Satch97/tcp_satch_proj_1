@@ -78,14 +78,14 @@ int main() {
 
         ReadLine(conn_s, buffer, 65535);
 
-        char* success = "success\n";
-        if(strcmp(buffer, success) == 0) printf("YESS\n");
-
-        memset(&buffer, 0, sizeof(buffer));
-        ReadLine(conn_s, buffer, 65535);
-        for(char* ch=buffer; *ch != '\0' ; ch++) *ch=toupper(*ch);
-        WriteLine(conn_s, buffer, strlen(buffer));
-        memset(&buffer, 0, sizeof(buffer));
+        char* cap = "CAP\n";
+        if(strcmp(buffer, cap) == 0) {
+          memset(&buffer, 0, sizeof(buffer));
+          ReadLine(conn_s, buffer, 65535);
+          for(char* ch=buffer; *ch != '\0' ; ch++) *ch=toupper(*ch);
+          WriteLine(conn_s, buffer, strlen(buffer));
+          memset(&buffer, 0, sizeof(buffer));
+        }
     }
 
     return 0;
