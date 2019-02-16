@@ -86,6 +86,8 @@ int main() {
           WriteLine(conn_s, buffer, strlen(buffer));
           memset(&buffer, 0, sizeof(buffer));
         }
+
+        close(conn_s);
     }
 
     return 0;
