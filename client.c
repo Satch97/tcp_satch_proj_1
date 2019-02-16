@@ -103,6 +103,12 @@ int main() {
         memset(&buffer, 0, sizeof(buffer));
         strcpy(buffer, "FILE\n");
         WriteLine(sock_desc, buffer, strlen(buffer));
+
+        memset(&buffer, 0, sizeof(buffer));
+        printf("Enter string : ");
+        scanf("%s", buffer);
+        strcat(buffer, "\n"); // add newline at end    
+        WriteLine(sock_desc, buffer, strlen(buffer));
     }
 
 
