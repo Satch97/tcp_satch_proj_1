@@ -98,6 +98,14 @@ int main() {
             ReadLine(conn_s, buffer, 65535);
             printf("received : %s with length %d\n", buffer, strlen(buffer));
             if (buffer[strlen(buffer) - 1] == '\n') buffer[strlen(buffer) - 1] = '\0';
+
+            FILE *fp;
+            if(fp = fopen (buffer, "r")) {
+
+            } else {
+                
+            }
+
         }
         close(conn_s);
     }
