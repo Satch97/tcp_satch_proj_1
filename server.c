@@ -68,7 +68,7 @@ int main() {
     }
 
     int conn_s, clientaddrlength;
-    char buffer[65535];
+    char buffer[65535], tempbuffer[65535];
     while(1) {
         if((conn_s = accept(sock_desc, (struct sockaddr *) &clientaddr, (socklen_t *) &clientaddrlength)) < 0) {
             printf("Error: accept\n");
@@ -83,6 +83,12 @@ int main() {
           memset(&buffer, 0, sizeof(buffer));
           ReadLine(conn_s, buffer, 65535);
           for(char* ch=buffer; *ch != '\0' ; ch++) *ch=toupper(*ch);
+
+          int wordlen = strlen(buffer);
+          memset(&tempbuffer, 0, sizeof(tempbuffer));
+          sprintf(tempbuffer, "%d\n", wordlen );
+          WriteLine(conn_s, tempbuffer, strlen(tempbuffer));
+
           WriteLine(conn_s, buffer, strlen(buffer));
           memset(&buffer, 0, sizeof(buffer));
         }
