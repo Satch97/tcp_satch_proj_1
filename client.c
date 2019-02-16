@@ -80,7 +80,7 @@ int main() {
     int action = GetInstr();
 
     memset(&buffer, 0, sizeof(buffer));
-    strcpy(buffer, "CCC\n");
+    strcpy(buffer, "CAP\n");
     WriteLine(sock_desc, buffer, strlen(buffer));
 
     memset(&buffer, 0, sizeof(buffer));
