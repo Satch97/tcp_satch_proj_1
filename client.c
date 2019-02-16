@@ -78,7 +78,7 @@ int main() {
     }
 
     int action = GetInstr();
-    
+
     if (action == 1) {
         memset(&buffer, 0, sizeof(buffer));
         strcpy(buffer, "CAP\n");
@@ -98,6 +98,11 @@ int main() {
         memset(&buffer, 0, sizeof(buffer));
         ReadLine(sock_desc, buffer, 54435);
         printf("Capitalized string : %s\n", buffer);
+    }
+    else if (action == 2) {
+        memset(&buffer, 0, sizeof(buffer));
+        strcpy(buffer, "FILE\n");
+        WriteLine(sock_desc, buffer, strlen(buffer));
     }
 
 
