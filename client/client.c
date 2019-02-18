@@ -106,8 +106,11 @@ int main() {
 
         memset(&buffer, 0, sizeof(buffer));
         printf("Enter string : ");
-        scanf("%s", buffer);
-        strcat(buffer, "\n"); // add newline at end
+        int c, len = 0;
+        while (c != '\n' && c != EOF && c != '\r' && len < MAX_LINE - 1) {
+            buffer[len++] = c;
+            c = getchar();
+        }
         WriteLine(sock_desc, buffer, strlen(buffer));
 
         memset(&buffer, 0, sizeof(buffer));
