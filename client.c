@@ -117,6 +117,12 @@ int main() {
         int mystrlen = strtol(buffer, NULL, 10);
         strcpy(filename,"testimg.jpg"); // testing file name
         FILE * fp;
+
+        if (fp = fopen(filename,"wb")) {
+        }
+        else {
+            printf("Cannot open file for writing\n");
+        }
     }
 
 
