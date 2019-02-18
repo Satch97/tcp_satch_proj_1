@@ -9,6 +9,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#define MAX_LINE    (65535)
+
+
 ssize_t ReadLine(int sock_desc, void *buffer, size_t maxlen) {
     int rec, num;
     char c, *lbuff = buffer;
@@ -58,7 +61,7 @@ int GetInstr() {
 int main() {
     int sock_desc;
     char *addr = "127.0.0.1";
-    char buffer[65535];
+    char buffer[MAX_LINE];
     if((sock_desc = socket (AF_INET, SOCK_STREAM, 0)) < 0) {
         printf("Error : Socket Creation");
     }
@@ -91,12 +94,12 @@ int main() {
         WriteLine(sock_desc, buffer, strlen(buffer));
 
         memset(&buffer, 0, sizeof(buffer));
-        ReadLine(sock_desc, buffer, 54435);
+        ReadLine(sock_desc, buffer, MAX_LINE -1);
         int strlen = strtol(buffer, NULL, 10);
         printf("Number of bytes to receive is %d\n", strlen);
 
         memset(&buffer, 0, sizeof(buffer));
-        ReadLine(sock_desc, buffer, 54435);
+        ReadLine(sock_desc, buffer, MAX_LINE -1);
         printf("Capitalized string : %s\n", buffer);
     }
     else if (action == 2) {
@@ -113,7 +116,7 @@ int main() {
         WriteLine(sock_desc, buffer, strlen(buffer));
 
         memset(&buffer, 0, sizeof(buffer));
-        ReadLine(sock_desc, buffer, MAX_LINE);
+        ReadLine(sock_desc, buffer, MAX_LINE -1);
         int mystrlen = strtol(buffer, NULL, 10);
         strcpy(filename,"testimg.jpg"); // testing file name
         FILE * fp;
