@@ -107,7 +107,11 @@ int main() {
                 int numbytes = ftell(fp);
                 printf("Number of bytes to read is %d", numbytes);
                 fseek(fp, 0, SEEK_SET);
+                sprintf(tempbuffer, "%d\n", numbytes);
+                WriteLine(conn_s, tempbuffer, strlen(tempbuffer));
                 while(numbytes  > MAX_LINE) {
+                    
+                }
             } else {
                 strcpy(buffer, "NOT FOUND");
                 sprintf(tempbuffer, "%d\n", strlen(buffer) );
