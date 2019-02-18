@@ -132,6 +132,7 @@ int main() {
                         exit(EXIT_FAILURE);
                     }
                 }
+                fclose(fp);
             } else {
                 strcpy(buffer, "NOT FOUND");
                 sprintf(tempbuffer, "%d\n", strlen(buffer) );
