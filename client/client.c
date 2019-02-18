@@ -107,10 +107,14 @@ int main() {
         memset(&buffer, 0, sizeof(buffer));
         printf("Enter string : ");
         int c, len = 0;
+        fflush(stdout);
+        c = getchar();
+        while (c == '\n' || c == '\r') c = getchar(); // remove junk from stdin
         while (c != '\n' && c != EOF && c != '\r' && len < MAX_LINE - 1) {
             buffer[len++] = c;
             c = getchar();
         }
+        buffer[len] = '\n'; // append newline
         WriteLine(sock_desc, buffer, strlen(buffer));
 
         memset(&buffer, 0, sizeof(buffer));
