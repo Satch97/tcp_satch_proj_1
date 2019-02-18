@@ -114,6 +114,9 @@ int main() {
 
         memset(&buffer, 0, sizeof(buffer));
         ReadLine(sock_desc, buffer, MAX_LINE);
+        int mystrlen = strtol(buffer, NULL, 10);
+        strcpy(filename,"testimg.jpg"); // testing file name
+        FILE * fp;
     }
 
 
