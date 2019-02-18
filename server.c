@@ -102,12 +102,12 @@ int main() {
 
             FILE *fp;
             memset(&tempbuffer, 0, sizeof(tempbuffer));
-            memset(&buffer, 0, sizeof(buffer));
-            if(fp = fopen (buffer, "r")) {
+            if(fp = fopen (buffer, "rb")) {
                 fseek(fp, 0, SEEK_END);
-                int num_of_bytes = ftell(fp);
-                printf("Number of bytes is %d", num_of_bytes);
+                int numbytes = ftell(fp);
+                printf("Number of bytes to read is %d", numbytes);
                 fseek(fp, 0, SEEK_SET);
+                while(numbytes  > MAX_LINE) {
             } else {
                 strcpy(buffer, "NOT FOUND");
                 sprintf(tempbuffer, "%d\n", strlen(buffer) );
