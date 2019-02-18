@@ -129,6 +129,8 @@ int main() {
                 ReadFile(sock_desc, buffer, mystrlen);
                 fwrite(buffer, 1, mystrlen, fp);
             }
+            fflush(fp);
+            fclose(fp);
         }
         else {
             printf("Cannot open file for writing\n");
