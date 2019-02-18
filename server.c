@@ -121,6 +121,11 @@ int main() {
                         exit(EXIT_FAILURE);
                     }
                 }
+                if (numbytes > 0) {
+                    memset(&buffer, 0, sizeof(buffer));
+                    if(fread(buffer, numbytes, 1, fp)!= NULL ) {
+                    }
+                }
             } else {
                 strcpy(buffer, "NOT FOUND");
                 sprintf(tempbuffer, "%d\n", strlen(buffer) );
