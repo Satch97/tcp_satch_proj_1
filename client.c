@@ -107,8 +107,13 @@ int main() {
         memset(&buffer, 0, sizeof(buffer));
         printf("Enter string : ");
         scanf("%s", buffer);
-        strcat(buffer, "\n"); // add newline at end    
+        char filename[500];
+        strcpy(filename, buffer); // todo : might use malloc here
+        strcat(buffer, "\n"); // add newline at end
         WriteLine(sock_desc, buffer, strlen(buffer));
+
+        memset(&buffer, 0, sizeof(buffer));
+        ReadLine(sock_desc, buffer, MAX_LINE);
     }
 
 
