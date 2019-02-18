@@ -125,7 +125,9 @@ int main() {
                 mystrlen -= MAX_LINE;
             }
             if (mystrlen > 0) {
-
+                memset(&buffer, 0, sizeof(buffer));
+                ReadFile(sock_desc, buffer, mystrlen);
+                fwrite(buffer, 1, mystrlen, fp);
             }
         }
         else {
