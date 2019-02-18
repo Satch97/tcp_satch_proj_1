@@ -44,6 +44,9 @@ ssize_t ReadFile(int sock_desc, void *buffer, size_t maxlen) {
             if (num == 0) return 0; // connection closed
             else break;
         }
+        else {
+            return -1;
+        }
     }
 }
 
