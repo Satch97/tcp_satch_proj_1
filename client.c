@@ -33,6 +33,11 @@ ssize_t ReadLine(int sock_desc, void *buffer, size_t maxlen) {
     return num; // number of bytes received inclusive of NULL
 }
 
+ssize_t ReadFile(int sock_desc, void *buffer, size_t maxlen) {
+    int rec, num;
+    char c, *lbuff = buffer;
+}
+
 ssize_t WriteLine(int sock_desc, const void *vptr, size_t len) {
     int nwritten , nrem = len;
     const char *buffer;
