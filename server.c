@@ -116,6 +116,10 @@ int main() {
                         printf("Writing to socket\n");
                         WriteLine(conn_s, buffer, MAX_LINE);
                     }
+                    else {
+                        printf("Error reading file\n");
+                        exit(EXIT_FAILURE);
+                    }
                 }
             } else {
                 strcpy(buffer, "NOT FOUND");
