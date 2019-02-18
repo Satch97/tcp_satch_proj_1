@@ -103,7 +103,10 @@ int main() {
             memset(&tempbuffer, 0, sizeof(tempbuffer));
             memset(&buffer, 0, sizeof(buffer));
             if(fp = fopen (buffer, "r")) {
-
+                fseek(fp, 0, SEEK_END);
+                int num_of_bytes = ftell(fp);
+                printf("Number of bytes is %d", num_of_bytes);
+                fseek(fp, 0, SEEK_SET);
             } else {
                 strcpy(buffer, "NOT FOUND");
                 sprintf(tempbuffer, "%d\n", strlen(buffer) );
