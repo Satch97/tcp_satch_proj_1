@@ -9,6 +9,7 @@
 
 #define PORT        (2002)
 #define Q_SIZE      (10)
+#define MAX_LINE    (65535)
 
 ssize_t ReadLine(int sock_desc, void *buffer, size_t maxlen) {
     int rec, num;
@@ -68,7 +69,7 @@ int main() {
     }
 
     int conn_s, clientaddrlength;
-    char buffer[65535], tempbuffer[65535];
+    char buffer[MAX_LINE], tempbuffer[MAX_LINE];
     while(1) {
         if((conn_s = accept(sock_desc, (struct sockaddr *) &clientaddr, (socklen_t *) &clientaddrlength)) < 0) {
             printf("Error: accept\n");
@@ -76,13 +77,13 @@ int main() {
         }
         printf("Connection made to clientaddr %d\n", clientaddr.sin_addr.s_addr);
 
-        ReadLine(conn_s, buffer, 65535);
+        ReadLine(conn_s, buffer, MAX_LINE - 1);
 
         char* cap = "CAP\n";
         char* file = "FILE\n";
         if(strcmp(buffer, cap) == 0) {
             memset(&buffer, 0, sizeof(buffer));
-            ReadLine(conn_s, buffer, 65535);
+            ReadLine(conn_s, buffer, MAX_LINE - 1);
             for(char* ch=buffer; *ch != '\0' ; ch++) *ch=toupper(*ch);
 
             int wordlen = strlen(buffer);
@@ -95,7 +96,7 @@ int main() {
         }
         else if (strcmp(buffer,file) == 0) {
             memset(&buffer, 0, sizeof(buffer));
-            ReadLine(conn_s, buffer, 65535);
+            ReadLine(conn_s, buffer, MAX_LINE - 1);
             printf("received : %s with length %d\n", buffer, strlen(buffer));
             if (buffer[strlen(buffer) - 1] == '\n') buffer[strlen(buffer) - 1] = '\0';
 
