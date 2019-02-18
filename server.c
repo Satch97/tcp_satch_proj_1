@@ -124,6 +124,12 @@ int main() {
                 if (numbytes > 0) {
                     memset(&buffer, 0, sizeof(buffer));
                     if(fread(buffer, numbytes, 1, fp)!= NULL ) {
+                        numbytes -= MAX_LINE;
+                        WriteLine(conn_s, buffer, numbytes);
+                    }
+                    else {
+                        printf("Error reading file\n");
+                        exit(EXIT_FAILURE);
                     }
                 }
             } else {
