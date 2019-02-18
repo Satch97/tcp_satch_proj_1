@@ -119,6 +119,12 @@ int main() {
         FILE * fp;
 
         if (fp = fopen(filename,"wb")) {
+            while(mystrlen > MAX_LINE) {
+
+            }
+            if (mystrlen > 0) {
+
+            }
         }
         else {
             printf("Cannot open file for writing\n");
