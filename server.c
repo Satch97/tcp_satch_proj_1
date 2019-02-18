@@ -110,7 +110,12 @@ int main() {
                 sprintf(tempbuffer, "%d\n", numbytes);
                 WriteLine(conn_s, tempbuffer, strlen(tempbuffer));
                 while(numbytes  > MAX_LINE) {
-                    
+                    memset(&buffer, 0, sizeof(buffer));
+                    if(fread(buffer, MAX_LINE, 1, fp)!= NULL ) {
+                        numbytes -= MAX_LINE;
+                        printf("Writing to socket\n");
+                        WriteLine(conn_s, buffer, MAX_LINE);
+                    }
                 }
             } else {
                 strcpy(buffer, "NOT FOUND");
