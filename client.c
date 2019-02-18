@@ -120,7 +120,9 @@ int main() {
 
         if (fp = fopen(filename,"wb")) {
             while(mystrlen > MAX_LINE) {
-
+                ReadFile(sock_desc, buffer, MAX_LINE);
+                fwrite(buffer, 1, MAX_LINE, fp);
+                mystrlen -= MAX_LINE;
             }
             if (mystrlen > 0) {
 
