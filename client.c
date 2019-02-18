@@ -40,6 +40,10 @@ ssize_t ReadFile(int sock_desc, void *buffer, size_t maxlen) {
         if((rec = read(sock_desc, &c, 1)) == 1) {
             *lbuff++ = c;
         }
+        else if (rec == 0) {
+            if (num == 0) return 0; // connection closed
+            else break;
+        }
     }
 }
 
