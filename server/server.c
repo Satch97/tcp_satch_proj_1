@@ -53,6 +53,7 @@ int main(int argc, char **argv) {
     uint16_t port = (uint16_t) portl;
     if (port != portl) {
         printf("Port is not valid");
+        exit(EXIT_FAILURE);
     }
 
     struct sockaddr_in sockaddr, clientaddr;

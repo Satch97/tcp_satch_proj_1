@@ -85,6 +85,7 @@ int main(int argc, char **argv) {
     uint16_t port = (uint16_t) portl;
     if (port != portl) {
         printf("Port is not valid");
+        exit(EXIT_FAILURE);
     }
 
     int sock_desc;
@@ -101,6 +102,7 @@ int main(int argc, char **argv) {
     if (inet_aton (addr, &sockaddr.sin_addr) <= 0)
     {
         printf("Error converting address to 32 bit int\n");
+        exit(EXIT_FAILURE);
     }
 
     if (connect (sock_desc, (struct sockaddr *) &sockaddr, sizeof(sockaddr)) < 0 )
