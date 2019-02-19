@@ -80,6 +80,13 @@ int main(int argc, char **argv) {
         printf("client.exe <server IP> <server port>");
         exit(EXIT_FAILURE);
     }
+
+    long int portl = strtol(argv[2], NULL, 10);
+    uint16_t port = (uint16_t) portl;
+    if (port != portl) {
+        printf("Port is not valid");
+    }
+
     int sock_desc;
     char *addr = "127.0.0.1";
     char buffer[MAX_LINE];
