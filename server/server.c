@@ -80,12 +80,14 @@ int main(int argc, char **argv) {
 
     int conn_s, clientaddrlength;
     char buffer[MAX_LINE], tempbuffer[MAX_LINE];
+
+    if((conn_s = accept(sock_desc, (struct sockaddr *) &clientaddr, (socklen_t *) &clientaddrlength)) < 0) {
+        printf("Error: accept\n");
+        exit(EXIT_FAILURE);
+    }
+    printf("Connection made to clientaddr %d\n", clientaddr.sin_addr.s_addr);
+
     while(1) {
-        if((conn_s = accept(sock_desc, (struct sockaddr *) &clientaddr, (socklen_t *) &clientaddrlength)) < 0) {
-            printf("Error: accept\n");
-            exit(EXIT_FAILURE);
-        }
-        printf("Connection made to clientaddr %d\n", clientaddr.sin_addr.s_addr);
 
         ReadLine(conn_s, buffer, MAX_LINE - 1);
 
@@ -152,8 +154,8 @@ int main(int argc, char **argv) {
             }
 
         }
-        close(conn_s);
     }
+    close(conn_s);
 
     return 0;
 }
