@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
         printf("server.exe <port>");
         exit(EXIT_FAILURE);
     }
-    long int portl = strtol(argv[2], NULL, 10);
+    long int portl = strtol(argv[1], NULL, 10);
     uint16_t port = (uint16_t) portl;
     if (port != portl) {
         printf("Port is not valid");
