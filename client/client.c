@@ -88,7 +88,7 @@ int main(int argc, char **argv) {
     }
 
     int sock_desc;
-    char *addr = "127.0.0.1";
+    char *addr = argv[1];
     char buffer[MAX_LINE];
     if((sock_desc = socket (AF_INET, SOCK_STREAM, 0)) < 0) {
         printf("Error : Socket Creation");
@@ -96,7 +96,7 @@ int main(int argc, char **argv) {
     struct sockaddr_in sockaddr;
     memset(&sockaddr, 0, sizeof(sockaddr));
     sockaddr.sin_family = AF_INET;
-    sockaddr.sin_port = htons(2002);
+    sockaddr.sin_port = htons(port);
 
     if (inet_aton (addr, &sockaddr.sin_addr) <= 0)
     {
@@ -106,7 +106,10 @@ int main(int argc, char **argv) {
     if (connect (sock_desc, (struct sockaddr *) &sockaddr, sizeof(sockaddr)) < 0 )
     {
         printf("Connection failed\n");
+        exit(EXIT_FAILURE);
     }
+
+    printf("Connection to port %d at address %s is successful\n\n", port, addr);
 
     int action = GetInstr();
 
