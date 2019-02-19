@@ -75,7 +75,7 @@ int GetInstr() {
 
 }
 
-int main() {
+int main(int argc, char **argv) {
     if (argc != 3) {
         printf("client.exe <server IP> <server port>");
         exit(EXIT_FAILURE);
