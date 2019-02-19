@@ -112,7 +112,6 @@ int main(int argc, char **argv) {
     printf("Connection to port %d at address %s is successful\n\n", port, addr);
 
     while (1) {
-        
         int action = GetInstr();
         if (action == 1) {
             memset(&buffer, 0, sizeof(buffer));
@@ -157,11 +156,11 @@ int main(int argc, char **argv) {
             memset(&buffer, 0, sizeof(buffer));
             ReadLine(sock_desc, buffer, MAX_LINE -1);
             int mystrlen = strtol(buffer, NULL, 10);
-            strcpy(filename,"testimg.jpg"); // testing file name
             FILE * fp;
 
             if (fp = fopen(filename,"wb")) {
                 while(mystrlen > MAX_LINE) {
+                    memset(&buffer, 0, sizeof(buffer));
                     ReadFile(sock_desc, buffer, MAX_LINE);
                     fwrite(buffer, 1, MAX_LINE, fp);
                     mystrlen -= MAX_LINE;

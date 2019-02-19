@@ -144,8 +144,8 @@ int main(int argc, char **argv) {
                 fclose(fp);
             } else {
                 strcpy(buffer, "NOT FOUND");
-                sprintf(tempbuffer, "%d\n", strlen(buffer) );
                 strcat(buffer, "\n");
+                sprintf(tempbuffer, "%d\n", strlen(buffer) );
                 WriteLine(conn_s, tempbuffer, strlen(tempbuffer));
                 WriteLine(conn_s, buffer, strlen(buffer));
             }
