@@ -76,6 +76,10 @@ int GetInstr() {
 }
 
 int main() {
+    if (argc != 3) {
+        printf("client.exe <server IP> <server port>");
+        exit(EXIT_FAILURE);
+    }
     int sock_desc;
     char *addr = "127.0.0.1";
     char buffer[MAX_LINE];
