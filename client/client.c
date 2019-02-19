@@ -111,70 +111,72 @@ int main(int argc, char **argv) {
 
     printf("Connection to port %d at address %s is successful\n\n", port, addr);
 
-    int action = GetInstr();
+    while (1) {
+        
+        int action = GetInstr();
+        if (action == 1) {
+            memset(&buffer, 0, sizeof(buffer));
+            strcpy(buffer, "CAP\n");
+            WriteLine(sock_desc, buffer, strlen(buffer));
 
-    if (action == 1) {
-        memset(&buffer, 0, sizeof(buffer));
-        strcpy(buffer, "CAP\n");
-        WriteLine(sock_desc, buffer, strlen(buffer));
-
-        memset(&buffer, 0, sizeof(buffer));
-        printf("Enter string : ");
-        int c, len = 0;
-        fflush(stdout);
-        c = getchar();
-        while (c == '\n' || c == '\r') c = getchar(); // remove junk from stdin
-        while (c != '\n' && c != EOF && c != '\r' && len < MAX_LINE - 1) {
-            buffer[len++] = c;
+            memset(&buffer, 0, sizeof(buffer));
+            printf("Enter string : ");
+            int c, len = 0;
+            fflush(stdout);
             c = getchar();
-        }
-        buffer[len] = '\n'; // append newline
-        WriteLine(sock_desc, buffer, strlen(buffer));
-
-        memset(&buffer, 0, sizeof(buffer));
-        ReadLine(sock_desc, buffer, MAX_LINE -1);
-        int strlen = strtol(buffer, NULL, 10);
-        printf("Number of bytes to receive is %d\n", strlen);
-
-        memset(&buffer, 0, sizeof(buffer));
-        ReadLine(sock_desc, buffer, MAX_LINE -1);
-        printf("Capitalized string : %s\n", buffer);
-    }
-    else if (action == 2) {
-        memset(&buffer, 0, sizeof(buffer));
-        strcpy(buffer, "FILE\n");
-        WriteLine(sock_desc, buffer, strlen(buffer));
-
-        memset(&buffer, 0, sizeof(buffer));
-        printf("Enter string : ");
-        scanf("%s", buffer);
-        char filename[500];
-        strcpy(filename, buffer); // todo : might use malloc here
-        strcat(buffer, "\n"); // add newline at end
-        WriteLine(sock_desc, buffer, strlen(buffer));
-
-        memset(&buffer, 0, sizeof(buffer));
-        ReadLine(sock_desc, buffer, MAX_LINE -1);
-        int mystrlen = strtol(buffer, NULL, 10);
-        strcpy(filename,"testimg.jpg"); // testing file name
-        FILE * fp;
-
-        if (fp = fopen(filename,"wb")) {
-            while(mystrlen > MAX_LINE) {
-                ReadFile(sock_desc, buffer, MAX_LINE);
-                fwrite(buffer, 1, MAX_LINE, fp);
-                mystrlen -= MAX_LINE;
+            while (c == '\n' || c == '\r') c = getchar(); // remove junk from stdin
+            while (c != '\n' && c != EOF && c != '\r' && len < MAX_LINE - 1) {
+                buffer[len++] = c;
+                c = getchar();
             }
-            if (mystrlen > 0) {
-                memset(&buffer, 0, sizeof(buffer));
-                ReadFile(sock_desc, buffer, mystrlen);
-                fwrite(buffer, 1, mystrlen, fp);
-            }
-            fflush(fp);
-            fclose(fp);
+            buffer[len] = '\n'; // append newline
+            WriteLine(sock_desc, buffer, strlen(buffer));
+
+            memset(&buffer, 0, sizeof(buffer));
+            ReadLine(sock_desc, buffer, MAX_LINE -1);
+            int strlen = strtol(buffer, NULL, 10);
+            printf("Number of bytes to receive is %d\n", strlen);
+
+            memset(&buffer, 0, sizeof(buffer));
+            ReadLine(sock_desc, buffer, MAX_LINE -1);
+            printf("Capitalized string : %s\n", buffer);
         }
-        else {
-            printf("Cannot open file for writing\n");
+        else if (action == 2) {
+            memset(&buffer, 0, sizeof(buffer));
+            strcpy(buffer, "FILE\n");
+            WriteLine(sock_desc, buffer, strlen(buffer));
+
+            memset(&buffer, 0, sizeof(buffer));
+            printf("Enter string : ");
+            scanf("%s", buffer);
+            char filename[500];
+            strcpy(filename, buffer); // todo : might use malloc here
+            strcat(buffer, "\n"); // add newline at end
+            WriteLine(sock_desc, buffer, strlen(buffer));
+
+            memset(&buffer, 0, sizeof(buffer));
+            ReadLine(sock_desc, buffer, MAX_LINE -1);
+            int mystrlen = strtol(buffer, NULL, 10);
+            strcpy(filename,"testimg.jpg"); // testing file name
+            FILE * fp;
+
+            if (fp = fopen(filename,"wb")) {
+                while(mystrlen > MAX_LINE) {
+                    ReadFile(sock_desc, buffer, MAX_LINE);
+                    fwrite(buffer, 1, MAX_LINE, fp);
+                    mystrlen -= MAX_LINE;
+                }
+                if (mystrlen > 0) {
+                    memset(&buffer, 0, sizeof(buffer));
+                    ReadFile(sock_desc, buffer, mystrlen);
+                    fwrite(buffer, 1, mystrlen, fp);
+                }
+                fflush(fp);
+                fclose(fp);
+            }
+            else {
+                printf("Cannot open file for writing\n");
+            }
         }
     }
 
