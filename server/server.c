@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#define PORT        (2002)
 #define Q_SIZE      (10)
 #define MAX_LINE    (65535)
 
@@ -65,7 +64,7 @@ int main(int argc, char **argv) {
 
     memset(&sockaddr, 0, sizeof(sockaddr));
     sockaddr.sin_family = AF_INET;
-    sockaddr.sin_port = htons(PORT);
+    sockaddr.sin_port = htons(port);
     sockaddr.sin_addr.s_addr = htonl(INADDR_ANY);
 
     if(bind(sock_desc, (struct sockaddr *) &sockaddr, sizeof(sockaddr)) < 0) {
