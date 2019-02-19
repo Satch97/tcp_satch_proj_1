@@ -45,7 +45,12 @@ ssize_t WriteLine(int sock_desc, const void *vptr, size_t len) {
     return len;
 }
 
-int main() {
+int main(int argc, char **argv) {
+    if (argc != 2) {
+        printf("server.exe <port>");
+        exit(EXIT_FAILURE);
+    }
+
     struct sockaddr_in sockaddr, clientaddr;
     int sock_desc = -1; // Default to error val
     if ((sock_desc = socket(PF_INET, SOCK_STREAM, 0)) <= 0) {
